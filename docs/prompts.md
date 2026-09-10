@@ -9,3 +9,9 @@
 | 30/08/2026 | Claude Sonnet 5 (claude.ai) | Armado de la guía de preguntas semiestructurada para las entrevistas, mapeada a los 7 supuestos del TP1; luego se pidió condensarla para acortar la duración de cada entrevista. | 2
 | 31/08/2026 | Claude Sonnet 5 (claude.ai) | Estructuración de las respuestas reales de U1, U2 y U3 como evidencia adjunta en la Sección 2, anonimizando nombres propios a U1/U2/U3 tal como exige la consigna. | 2
 | 01/09/2026 | Claude Sonnet 5 (claude.ai) | Reformato de las secciones "Necesidades reales" y "¿Qué apareció que no habían previsto?" en listas con una frase corta en negrita a modo de título, según un formato de referencia indicado por el equipo. | 2
+| 09/09/2026 | Claude Opus 5 (claude.ai) | Corrección de formato del documento Word: dos tablas con anchos de columna rotos que se renderizaban colapsadas. Sin cambios de contenido. | 2
+| 09/09/2026 | Claude Opus 5 (claude.ai) | Redacción del punto 10.1 (anclaje), seleccionando tres decisiones del wireframe y vinculándolas a citas textuales de las entrevistas del TP2. Incluye la declaración de una decisión no anclada en el relevamiento. | 3
+| 09/09/2026 | Claude Opus 5 (claude.ai) | Propuesta de redacción para el punto 10.2 (descarte), armada a partir de las exclusiones documentadas en la Parte 1. | 3
+| 09/09/2026 | Claude Opus 5 (claude.ai) | Recorte del documento para ajustarlo a la extensión orientativa de la consigna: eliminación de preámbulos repetidos, compresión del flujo principal y de las celdas de las tablas. | 3
+| 09/09/2026 | Claude Opus 5 (claude.ai) | Redacción de docs/diseno/alternativas.md y docs/diseno/propuesta-final.md a partir del contenido ya elaborado por el equipo en el documento de entrega. | 3
+| 09/09/2026 | Claude Opus 5 (claude.ai) | Asistencia con Git: estructura de carpetas, commits y apertura del pull request. | 3
