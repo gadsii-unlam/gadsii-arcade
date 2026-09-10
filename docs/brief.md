@@ -1,9 +1,9 @@
 # Brief de Producto — UNLaMigo
 
 **Equipo:** Arcade
-**Versión:** 2
+**Versión:** 3
 **Repositorio:** https://github.com/gadsii-unlam/gadsii-arcade
-**Fecha:** 01/09/2026
+**Fecha:** 09/09/2026
 
 ## Registro de cambios
 
@@ -24,6 +24,15 @@
 - Se agregan dos requisitos nuevos a la funcionalidad core #4 (garantía ante cancelaciones y reserva con antelación) y una nota a la integración de validación de alumno regular (no alcanza por sí sola para generar confianza).
 - Se agrega una advertencia sobre la estimación de tamaño del segmento: la baja frecuencia presencial de uno de los conductores relevados (U2) sugiere que podría estar sobreestimada.
 
+### v2 → v3 (09/09/2026 — TP3)
+- Se agrega la sección **Scope del MVP**, con lo incluido y excluido y la justificación de cada decisión en función de la hipótesis de valor del TP2.
+- Se define que la **reserva de un trayecto se realiza con hasta un día de antelación**, como punto medio entre el uso "mismo día" que describía U1 y la reserva anticipada que pedía U3.
+- Se decide **excluir el chat/mensajería entre conductor y pasajero** antes de aceptar una solicitud: el MVP testea la confianza mostrando el perfil del pasajero (carrera, antigüedad como alumno), no mediante conversación previa.
+- Se decide **limitar el MVP a un solo vehículo por conductor** (marca, modelo, color y patente cargados una vez en el perfil); permitir varios autos por conductor queda excluido del MVP y anotado como mejora futura.
+- Se agrega la sección **Qué se construye y qué se simula**: se construyen de verdad la publicación de trayectos, la búsqueda, el perfil del pasajero y la confirmación de solicitudes; se simulan la base de datos de validación de alumno regular (no hay acceso al padrón real de la UNLaM) y se precargan trayectos y "user personas" ficticias para completar la demo.
+- Se agrega el **flujo principal del MVP**, distinguiendo un registro inicial (única vez, incluye validación de alumno regular y carga del vehículo) de un uso recurrente (publicar trayecto → recibir y aceptar/rechazar solicitudes → iniciar viaje → detección de llegada → finalizar viaje), que es donde ocurre el evento que mide la hipótesis.
+- Se agrega la **detección de llegada al destino** (lectura puntual de geolocalización contra las coordenadas de la UNLaM) como condición para habilitar "Finalizar viaje". Se deja explícito que esto es distinto del seguimiento en vivo (que sigue excluido): es un único chequeo al final, no un tracking continuo.
+- Se agregan los **atributos de usabilidad priorizados**: facilidad de aprendizaje, eficiencia y satisfacción, justificados con hallazgos del perfil real de U1/U2/U3 (uso poco frecuente e irregular, ventanas de uso cortas y puntuales, y la barrera emocional de seguridad que exige medir conformidad además de la sola aceptación). Con esto queda completa la Parte 1 del TP3.
 
 ---
 
@@ -92,6 +101,8 @@ Además de estos dos grupos, otro beneficiario es la propia institución univers
 >
 > Ambos puntos quedan como insumo para el diseño de esta funcionalidad en el TP3.
 
+> ✅ **Actualización TP3:** se resolvió el punto anterior. La reserva se admite con **hasta un día de antelación** (punto medio entre ambos usuarios), y la garantía ante cancelaciones **queda fuera del MVP** por ahora (se resuelve a mano, ver "Scope del MVP" más arriba).
+
 ---
 
 ## Integraciones previstas
@@ -101,6 +112,8 @@ Además de estos dos grupos, otro beneficiario es la propia institución univers
 - **Validación del vehículo del conductor:** lectura del código QR presente en la cédula verde/azul para autocompletar los datos del vehículo, con revisión y confirmación manual por parte del Validador.
 
 > ⚠️ **Actualización TP2:** el hallazgo más importante del relevamiento es que la validación de alumno regular, por sí sola, **no alcanza** para destrabar la confianza del conductor. Dos de los tres conductores (U2 y U3) no aceptarían viajar con un desconocido bajo ninguna condición administrativa: solo confían en amigos (U2) o en personas con las que generen confianza charlando antes —nombre, carrera, dónde vive— (U3). Esto sugiere sumar mecanismos de confianza adicionales (perfil del pasajero, antigüedad como alumno, historial de viajes, calificaciones) a la integración de validación ya prevista.
+
+> ✅ **Actualización TP3:** del mecanismo de confianza propuesto, el MVP construye el **perfil del pasajero** (carrera, antigüedad como alumno). El **historial de viajes y calificaciones** queda fuera del MVP (no hay datos acumulados todavía) y el **chat previo** que pedía U3 se descarta explícitamente: se prueba primero si el perfil solo alcanza. La **geolocalización en tiempo real** y la **lectura de QR del vehículo** también quedan fuera del MVP (ver "Scope del MVP").
 
 ---
 
@@ -206,3 +219,85 @@ Los tres tienen celular propio con datos móviles.
 4. **Una disponibilidad y un modo de uso menos uniformes de lo asumido.** La baja frecuencia presencial de U2 y la preferencia de U3 por reservar con antelación muestran que el patrón de uso entre conductores no es homogéneo.
 
 **Supuesto crítico:** el número 7 (coincidencia de recorridos y horarios). Si no existe suficiente superposición geográfica y horaria entre conductores y pasajeros, no hay viajes que armar y el producto pierde su razón de ser, independientemente de que el resto de los supuestos se cumplan.
+
+---
+
+## Scope del MVP (TP3)
+
+**Criterio aplicado:** el MVP testea si un conductor acepta pasajeros desconocidos y sostiene esos viajes cuando se le muestra un perfil de confianza, más allá de la validación de alumno regular. Todo lo que no aporta señal directa a esa pregunta queda fuera de esta versión.
+
+### Incluido en el MVP
+
+| Incluido | Para qué parte de la hipótesis sirve |
+|---|---|
+| Publicación de trayecto (conductor) | Sin oferta no hay nada que testear; es la base del experimento. |
+| Búsqueda de trayectos cercanos (pasajero) | Necesario para que exista demanda real que genere solicitudes. |
+| Solicitud para unirse a un trayecto, con reserva hasta un día antes del viaje (pasajero) | Genera el evento que se mide: si el conductor acepta o no a un desconocido. La ventana de un día es el punto medio entre el uso "mismo día" (U1) y la reserva anticipada (U3). |
+| Perfil del pasajero visible al conductor (carrera, antigüedad como alumno) | Es el corazón de la hipótesis: probar si mostrar esto —más allá de la validación de alumno regular— destraba la aceptación de desconocidos. |
+| Confirmación manual de la solicitud (conductor acepta/rechaza) | Es el momento exacto donde se mide la variable de éxito de la hipótesis. |
+| Validación de alumno regular (revisión manual del Validador) | Condición base que ya asumían los tres conductores; sin esto no arrancan a confiar. |
+| Detección de llegada al destino (geolocalización puntual) | Cierra correctamente el ciclo del trayecto: evita que el conductor finalice el viaje sin haber llegado, algo ligado al hallazgo de U1 sobre garantías de que el viaje se concreta. |
+
+### Excluido del MVP
+
+| Excluido | Por qué se excluye |
+|---|---|
+| Chat / mensajería entre conductor y pasajero antes de aceptar | El equipo decidió no construirlo: la hipótesis se testea con el perfil del pasajero como mecanismo de confianza, sin necesidad de conversación previa. |
+| Geolocalización en tiempo real durante el viaje | No incide en si el conductor acepta al pasajero; es valor posterior a la aceptación. |
+| Lectura de QR de cédula verde/azul | La validación del vehículo se resuelve a mano (revisión manual del Validador); no cambia si el conductor confía o no en el pasajero. |
+| Historial de viajes previos y calificaciones | Requiere uso acumulado que un MVP recién lanzado no tiene; mostraría una lista vacía o simulada. |
+| Mecanismo de reembolso/garantía ante cancelaciones | Implica lógica de pagos inexistente en el producto; se resuelve a mano por ahora. |
+| Reserva con antelación abierta (sin límite de días) | Se descarta a favor de una ventana fija de un día antes del viaje. |
+| Múltiples vehículos por conductor | Se limita el MVP a un solo vehículo por conductor, cargado una vez en el perfil. Permitir varios autos abre una decisión adicional (cuál usar en cada trayecto) que no aporta señal a la hipótesis; queda como mejora futura. |
+
+---
+
+## Qué se construye y qué se simula (TP3)
+
+| Elemento | Se construye | Se simula / se resuelve a mano |
+|---|---|---|
+| Publicación de trayecto (conductor) | Funcionalidad completa. | — |
+| Búsqueda de trayectos cercanos (pasajero) | Lógica de filtrado por proximidad y horario. | Se precargan varios trayectos ficticios en la base, además del cargado en vivo durante la demo. |
+| Validación de alumno regular | Script propio de OCR sobre la foto/PDF del certificado, que extrae nombre, DNI y carrera. | La comparación se hace contra una base de datos interna armada por el equipo, no contra el padrón real de la UNLaM (sin acceso a esa API). |
+| Perfil del pasajero visible al conductor (carrera, antigüedad) | El componente que muestra el perfil antes de aceptar una solicitud. | Se crean "user personas": perfiles ficticios con datos verosímiles, además de los perfiles reales del equipo. |
+| Confirmación manual de la solicitud | Funcionalidad completa. | — |
+| Detección de llegada al destino | Una única lectura de la posición del dispositivo al final del trayecto, comparada contra las coordenadas de la UNLaM (con radio de tolerancia). Reutiliza la misma API de mapas ya prevista. | — |
+
+**Aclaración:** en la validación de alumno regular, lo que se simula es la fuente de verdad (el padrón real de la UNLaM, al que no hay acceso) — no la lógica de validación en sí, que se construye de verdad (OCR + comparación). De la misma forma, la detección de llegada es un chequeo puntual de geolocalización (una sola lectura al final del viaje), no un seguimiento continuo: el tracking en vivo sigue excluido del MVP (ver "Excluido del MVP").
+
+---
+
+## Flujo principal del MVP (TP3)
+
+El flujo se centra en el Conductor, usuario primario. Se distingue un **registro inicial** (única vez) de un **uso recurrente** (cada vez que quiere ofrecer un viaje), que es donde ocurre el evento que mide la hipótesis.
+
+**A. Registro inicial (una sola vez)**
+1. El usuario crea su cuenta con usuario y contraseña, y carga sus datos personales básicos (nombre, carrera, año de ingreso).
+2. El sistema solicita la foto o PDF del certificado de alumno regular. Un script propio aplica OCR para extraer los datos (nombre, DNI, carrera) y los compara contra la base de datos interna del equipo.
+3. Si los datos coinciden, la cuenta queda en estado "pendiente de validación" hasta que el Validador confirma manualmente la aprobación.
+4. Si el usuario va a actuar como Conductor, carga además los datos de su único vehículo: marca, modelo, color y patente.
+5. El sistema confirma "Cuenta validada" y habilita el acceso a la aplicación.
+
+**B. Uso recurrente — publicar un trayecto y recibir pasajeros**
+1. El conductor inicia sesión con su usuario y contraseña.
+2. El sistema valida la identidad comparando las credenciales contra los datos de usuario en la base de datos.
+3. El sistema muestra la pantalla principal: mensaje de bienvenida, menú hamburguesa, la sección "Cargar trayecto" (visible por rol Conductor) y "Buscar viaje".
+4. El conductor toca "Cargar trayecto". El sistema traza automáticamente, vía la API de mapas, un recorrido sugerido entre su casa y la facultad.
+5. El conductor ajusta el trazado arrastrando el vector y define la hora de salida. El vehículo (cargado en el registro) queda vinculado automáticamente.
+6. El conductor confirma. El sistema responde "Trayecto publicado con éxito. Esperando pasajeros." El trayecto queda visible para búsqueda y disponible para reserva hasta un día antes del viaje.
+7. Cuando un pasajero solicita unirse, aparece una notificación con su foto y los datos que sostienen la hipótesis —carrera y antigüedad como alumno regular— y los botones Aceptar/Rechazar.
+8. Si el conductor acepta, se descuenta el cupo y el pasajero recibe la confirmación. Si rechaza, el cupo queda disponible. **Este es el evento central que mide la hipótesis.**
+9. Los pasos 7-8 se repiten hasta completar los cupos o hasta que se cumpla la ventana de reserva de un día.
+10. Cerca del horario de salida, el sistema habilita "Iniciar viaje". El trayecto pasa a estado "en curso" (sin seguimiento continuo en el mapa, ya que la geolocalización en tiempo real está excluida del alcance).
+11. Al llegar, el sistema realiza una lectura puntual de geolocalización y detecta que el conductor se encuentra en la ubicación de la UNLaM. Recién entonces habilita el botón "Finalizar viaje".
+12. El conductor presiona "Finalizar viaje" y el trayecto queda cerrado. Acá concluye el flujo principal del MVP.
+
+*El recorrido espejo del Pasajero (buscar trayectos y solicitar unirse) es el que dispara el paso B.7, pero no se detalla como flujo aparte para no abrir un segundo recorrido igual de importante.*
+
+## Atributos de usabilidad priorizados (TP3)
+
+**1. Facilidad de aprendizaje.** Los tres conductores nunca usaron un producto de este tipo, y la barrera principal ya es psicológica (seguridad). Si además cuesta entender cómo usar la app, se suma una segunda fricción sobre una decisión que ya de por sí genera resistencia. La frecuencia de uso además es baja e irregular (U2 cursa presencial un solo día a la semana), por lo que no hay oportunidad de "acostumbrarse" con uso repetido: cada sesión casi tiene que sentirse como la primera.
+
+**2. Eficiencia.** Los tres describen ventanas de uso cortas y puntuales, no momentos dedicados a explorar la app: U1 la usaría el mismo día antes de salir de cursar, y U2 la usaría a la tarde, mientras merienda, antes de salir hacia la facultad. Un flujo con muchos pasos no encaja en esos márgenes de tiempo.
+
+**3. Satisfacción.** Es el atributo que conecta más directo con la hipótesis. No alcanza con que el conductor complete la acción de aceptar a un desconocido: la hipótesis se sostiene si además queda conforme con esa decisión, porque la barrera real es emocional (seguridad), no operativa. Si acepta un pasajero pero la experiencia le genera dudas o incomodidad, el mecanismo de confianza (perfil del pasajero) no cumplió su función aunque el flujo haya funcionado técnicamente. La satisfacción es la métrica cualitativa que completa a la tasa de aceptación (métrica de comportamiento) definida en la hipótesis de valor.
