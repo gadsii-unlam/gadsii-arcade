@@ -1,0 +1,4 @@
+El usuario central es el estudiante de 1er o 2do año
+La aplicacion esta pensada para su uso dentro del campus, al momento de buscar el aula de cursada, utilizando un smartphone que debe tener conexion a internet, ya sea mediante datos moviles o conectado al wifi disponible en distintas zonas de las instalaciones.
+Priorizan la visual del plano de la universidad, para facilitar la ubicacion del aula y la notificacion de cambio imprevisto, para evitar recorridos innecesarios que demoran la llegada a horario a la clase.
+La hipotesis a testear a traves del MVP se centra en lograr una reduccion de la desorientacion del usuario en el campus, al momento de buscar el aula, asi como conseguir la informacion actualizada en el menor tiempo posible si existieran cambios de asignacion de aula.
