@@ -15,3 +15,5 @@
 | 09/09/2026 | Claude Opus 5 (claude.ai) | Recorte del documento para ajustarlo a la extensión orientativa de la consigna: eliminación de preámbulos repetidos, compresión del flujo principal y de las celdas de las tablas. | 3
 | 09/09/2026 | Claude Opus 5 (claude.ai) | Redacción de docs/diseno/alternativas.md y docs/diseno/propuesta-final.md a partir del contenido ya elaborado por el equipo en el documento de entrega. | 3
 | 09/09/2026 | Claude Opus 5 (claude.ai) | Asistencia con Git: estructura de carpetas, commits y apertura del pull request. | 3
+| 05/10/2026 | Claude Sonnet 5.5 (claude.ai) | Evaluación heurística del wireframe de UNLaM WayFinder (Taiko) con las 10 heurísticas de Nielsen, a partir de su brief v3 y su wireframe. Detalle en docs/evaluacion/evaluacion-ia.md. | 4
+| 20/10/2026 | Claude Sonnet 5.5 (claude.ai) | Maquetación de los informes TP4A y TP4B en Word con la estética del TP1 y mejora de redacción sobre el contenido ya elaborado por el equipo. Revisión de consistencia de los conteos. | 4
