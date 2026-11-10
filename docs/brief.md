@@ -1,8 +1,10 @@
 # Brief de Producto — UNLaMigo
 
 **Equipo:** Arcade
-**Versión:** 4
-**Repositorio:** https://github.com/agustiniglesias99/GADS
+**Versión:** 5
+**Repositorio:** https://github.com/gadsii-unlam/gadsii-arcade
+**Código del MVP:** https://github.com/agustiniglesias99/GADS/tree/main/UnlamigoMVP/UNLaMigo
+**MVP funcionando:** https://gadsunlamigo.vercel.app/
 **Fecha:** 10/11/2026
 
 ## Registro de cambios
@@ -42,6 +44,12 @@
 - Se registra **lo aprendido**: foto y nombre completo son lo más pedido, el indicador fijo "3 alumnos validados cerca tuyo" contaminó una de las aceptaciones y cuatro de los seis hallazgos del TP4 aparecieron en la sesión.
 - Se actualiza el **estado de los supuestos** afectados: el 5 se mantiene "Mayormente refutado" con un matiz, y el 7 no pudo evaluarse porque el MVP no construyó el lado pasajero.
 - Se registra la **decisión de perseverar**, con un ciclo de ajuste antes de construir el lado pasajero.
+
+### v4 → v5 (10/11/2026 — TP6)
+- **Cambios respecto de la v4:** la v5 suma la mirada de arquitectura. Se documenta la arquitectura real del MVP del TP5 (una aplicación web de una sola página, sin backend, con los datos en el almacenamiento local del navegador), se clasifican dos decisiones que el MVP heredó de la herramienta con la que se construyó, se diagrama la arquitectura de la gran visión del TP1 marcando lo que ya cubre el MVP, y se incorporan las tecnologías que esa visión agregaría y las restricciones técnicas del contexto. Se identifica además el componente más riesgoso al crecer. La v4 dejó la hipótesis «no concluyente» y la decisión de perseverar; la v5 no la modifica.
+- Se agrega la sección **Arquitectura del sistema (TP6)**, con los diagramas en `docs/arquitectura/`.
+- Se toma de la v4 el pedido más repetido (foto y nombre completo del pasajero en el perfil) como requisito de arquitectura: el almacenamiento privado de archivos pasa a cubrir también fotos de perfil.
+- Se agrega la lista de **restricciones técnicas del contexto**: sin acceso al padrón de la UNLaM, DNI en los certificados de alumno regular, ubicación desde el navegador y uso en ventanas breves desde el celular.
 
 ---
 
@@ -372,3 +380,46 @@ La hipótesis no se refuta, porque dos conductores aceptaron a un desconocido va
 Calificaciones, historial y chat siguen fuera del alcance: solo U3 los pidió.
 
 **Pivote:** no corresponde por ahora. Si el segundo ciclo da 1 de 3 aceptaciones o menos, con el perfil completo y sin los factores de contaminación, correspondería un **pivote de necesidad del consumidor**: la barrera ya no sería la falta de información, y la nueva hipótesis buscaría qué otra condición de confianza falta.
+
+---
+
+## Arquitectura del sistema (TP6)
+
+### Arquitectura real del MVP
+El MVP es una aplicación web de una sola página (React 19, TypeScript y Vite), pensada para el celular, que corre entera en el navegador. No tiene backend, ni base de datos, ni servicios externos: el estado vive en un reducer cuyo resultado se guarda en el almacenamiento local del navegador (clave `unlamigo:v1`) y la navegación es por estado de la aplicación, sincronizada con el historial. Las dependencias se leyeron de los imports del código. Diagrama: `docs/arquitectura/arquitectura-mvp.png`.
+
+| Elemento | Previsto en el TP3 | Estado real en el MVP |
+|---|---|---|
+| Publicación de trayectos | Construir | Construido (origen en texto libre, sin mapa; no se puede editar ni borrar un trayecto) |
+| Confirmación manual de la solicitud | Construir | Construido |
+| Solicitud entrante y perfil del pasajero | Simular | Simulado, con cuatro perfiles ficticios; se dispara con un botón «Demo» visible en el inicio (no llega sola) |
+| Validación de alumno regular | OCR propio contra base interna | Simulado, más que lo previsto: el ingreso acepta cualquier usuario y clave y el inicio muestra un «3 alumnos validados cerca tuyo» escrito a mano |
+| Detección de llegada | Una lectura puntual | Construido (radio de 600 m del campus); un botón «Demo» visible saltea la verificación |
+| Búsqueda por proximidad, reserva, registro con OCR y carga del vehículo | Construir | No construidos (desvío respecto del TP3) |
+
+El código del MVP está en https://github.com/agustiniglesias99/GADS/tree/main/UnlamigoMVP/UNLaMigo y la versión 1.0.0 está publicada en https://gadsunlamigo.vercel.app/. Las dependencias del diagrama se leyeron de los imports del código de la versión 1.0.0.
+
+### Decisiones heredadas
+| Decisión | ¿Quién la tomó? | ¿La sostendrían hoy? | Dato que la sostiene o la contradice |
+|---|---|---|---|
+| A. Los datos viven solo en el almacenamiento local del navegador | La propuso Claude y la validó el equipo | Sí para el ciclo de ajuste, no para la gran visión: se reemplaza por una base compartida antes de construir el lado pasajero | Sostiene: la hipótesis del TP2 es del lado del conductor y se puede probar sin compartir datos. Contradice: el producto es de dos lados y sin datos compartidos no se puede medir el supuesto crítico 7; «Cerrar sesión» reinicia todo el estado y no hay acción para editar ni borrar un trayecto; U2 cursa presencial una vez por semana y los navegadores pueden vaciar el almacenamiento local. TP5 (prueba emulada): U2 no pudo borrar el trayecto equivocado y quedaron dos publicados; cada sesión parte de datos limpios, así que no se evalúa el estado entre usos. |
+| B. La navegación es por estado de la aplicación, sin librería de rutas, y cada formulario guarda sus campos en estado local | La propuso Claude y la validó el equipo | Sí para el ciclo de ajuste, no para sumar notificaciones o el lado pasajero: ahí se adopta un enrutador con URL por pantalla | Sostiene: los usos del TP2 son cortos y lineales. Contradice: el TP4 aceptó botones «Volver» que recuperen pantalla y estado, pero «Volver» de Cargar trayecto va al inicio y descarta lo escrito; sin dirección por pantalla no se abre la solicitud desde un aviso. TP5 (prueba emulada): U2, T1 (4:10), reabrió el formulario vacío y volvió a escribir todo. |
+
+### Arquitectura de la gran visión
+Diagrama: `docs/arquitectura/arquitectura-gran-vision.png`, con lo que cubre el MVP marcado en verde (construido) y ámbar (simulado). Clientes para conductor, pasajero y validador; servicios de negocio detrás de una API (cuentas y perfiles, trayectos, búsqueda y matching, solicitudes y reservas, validación de alumno regular, validación de vehículo, seguimiento del viaje, notificaciones); datos compartidos; y servicios externos e institucionales (mapas, OCR, notificaciones push, padrón de la UNLaM).
+
+**Salto arquitectónico más grande:** pasar de datos locales en un solo dispositivo a un backend compartido con base persistente e identidad real. Sin datos compartidos no hay búsqueda, ni solicitudes entre personas, ni notificaciones, ni validación real, ni forma de medir el supuesto crítico 7.
+
+### Tecnologías que agregaría la visión
+- **PostgreSQL con PostGIS, gestionado (por ejemplo, Supabase):** la búsqueda por radio de 5 a 10 cuadras es una consulta geoespacial nativa y una base compartida es el salto anterior. Se elige por familiaridad del equipo (ya usamos Supabase) y por la función.
+- **Notificaciones push (Web Push sobre PWA, o FCM si se pasa a app nativa):** justificada por el contexto de uso del TP2 (ventanas breves, casi nunca con la app abierta) y porque la solicitud caduca si el conductor no responde antes del horario de salida. En iOS, el Web Push solo funciona con la PWA instalada.
+- **Validación de alumno regular con OCR autoalojado, cola de revisión del Validador y almacenamiento privado de archivos:** justificada por una restricción real de la UNLaM (sin acceso al padrón) y por la política de datos personales (el certificado contiene el DNI). No hay información sobre si la UNLaM ofrece hosting o ingreso institucional: es un supuesto, porque el equipo no tiene acceso a sus sistemas.
+
+### Restricciones técnicas del contexto
+- Sin acceso al padrón ni a los sistemas de alumnos de la UNLaM: la condición de alumno regular se valida con el certificado y revisión manual.
+- Los certificados contienen el DNI y los perfiles tendrán foto: almacenamiento privado, con acceso solo del Validador a los certificados.
+- La ubicación se lee desde el navegador: exige HTTPS, permiso del usuario y tiene límites con la pantalla bloqueada.
+- Uso en el celular, en ventanas breves y casi nunca con la app abierta (TP2): la solicitud tiene que llegar por un aviso.
+
+### Componente más riesgoso
+**La lectura de ubicación desde el navegador (hoy detección de llegada, mañana seguimiento en vivo).** Depende del mundo físico, hoy se puede saltear con un botón «Demo» visible, no escala al seguimiento en vivo con una aplicación web y su falla pega en la barrera central del TP2 (la seguridad). En la prueba del TP5 (emulada), fuera del campus «Verificar llegada» informó 6,2, 4,8 y 11,4 km sin decir qué hacer y los tres terminaron con el botón «Demo». Candidato en segundo lugar: búsqueda y matching por proximidad y horario, que todavía no existe.
