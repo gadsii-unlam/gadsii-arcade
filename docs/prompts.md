@@ -17,3 +17,7 @@
 | 09/09/2026 | Claude Opus 5 (claude.ai) | Asistencia con Git: estructura de carpetas, commits y apertura del pull request. | 3
 | 05/10/2026 | Claude Sonnet 5.5 (claude.ai) | Evaluación heurística del wireframe de UNLaM WayFinder (Taiko) con las 10 heurísticas de Nielsen, a partir de su brief v3 y su wireframe. Detalle en docs/evaluacion/evaluacion-ia.md. | 4
 | 20/10/2026 | Claude Sonnet 5.5 (claude.ai) | Maquetación de los informes TP4A y TP4B en Word con la estética del TP1 y mejora de redacción sobre el contenido ya elaborado por el equipo. Revisión de consistencia de los conteos. | 4
+| 10/11/2026 | Claude Sonnet 5.5 (claude.ai) | Lectura del código del MVP (UnlamigoMVP.zip, versión 1.0.0) y de la consigna del TP5, y comparación del informe borrador con lo que el código realmente implementa. Se detectó que los botones Demo, el indicador "3 alumnos validados cerca tuyo" y la solicitud automática no estaban aplicados, y se declararon como desvíos en las secciones 1.4, 2.2, 2.4 y 3.2 del informe. | 5
+| 10/11/2026 | Claude Sonnet 5.5 (claude.ai) | Generación de la transcripción de las tres sesiones (transcripcion-sesiones-TP5.md) y de las notas docs/evidencia/tp5/U1.md, U2.md y U3.md a partir de ella. | 5
+| 10/11/2026 | Claude Sonnet 5.5 (claude.ai) | Addendum fechado en docs/tp5/criterio-exito.md y subsección 1.5 del informe, sin tocar métricas ni umbrales. | 5
+| 10/11/2026 | Claude Sonnet 5.5 (claude.ai) | Revisión de consistencia entre informe, brief, transcripción y notas U1, U2 y U3. | 5
