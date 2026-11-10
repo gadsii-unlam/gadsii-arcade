@@ -38,7 +38,7 @@
 - Se agrega la sección **Resultados del TP5**, que documenta los resultados de la prueba con U1, U2 y U3, las métricas y el criterio de éxito, el MVP construido, el aprendizaje, el estado de la hipótesis y la decisión de pivotar o perseverar.
 - Se documentan **M1** (aceptación de solicitudes de desconocidos), **M2** (información que el conductor busca antes de decidir), la métrica vanidosa (trayectos publicados) y el criterio de confirma / refuta / no concluyente.
 - Se registra el **MVP construido**: flujo del conductor de punta a punta; la búsqueda del pasajero, el registro con OCR, la reserva con antelación y la carga de vehículo no se implementaron (desvío respecto del TP3, decidido por el equipo para concentrar la prueba en el conductor).
-- Se completan los **resultados de la prueba**, emulada con U1, U2 y U3 en el rol Conductor sobre la versión 1.0.0 del MVP: M1 (2 de 3 aceptan) y M2 (2 de 3 piden un dato antes de decidir) dan un veredicto **no concluyente** contra el criterio de éxito.
+- Se completan los **resultados de la prueba**, realizada con U1, U2 y U3 en el rol Conductor sobre la versión 1.0.0 del MVP: M1 (2 de 3 aceptan) y M2 (2 de 3 piden un dato antes de decidir) dan un veredicto **no concluyente** contra el criterio de éxito.
 - Se registra **lo aprendido**: foto y nombre completo son lo más pedido, el indicador fijo "3 alumnos validados cerca tuyo" contaminó una de las aceptaciones y cuatro de los seis hallazgos del TP4 aparecieron en la sesión.
 - Se actualiza el **estado de los supuestos** afectados: el 5 se mantiene "Mayormente refutado" con un matiz, y el 7 no pudo evaluarse porque el MVP no construyó el lado pasajero.
 - Se registra la **decisión de perseverar**, con un ciclo de ajuste antes de construir el lado pasajero.
