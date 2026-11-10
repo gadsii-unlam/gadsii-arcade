@@ -38,7 +38,10 @@
 - Se agrega la sección **Resultados del TP5**, que documenta los resultados de la prueba con U1, U2 y U3, las métricas y el criterio de éxito, el MVP construido, el aprendizaje, el estado de la hipótesis y la decisión de pivotar o perseverar.
 - Se documentan **M1** (aceptación de solicitudes de desconocidos), **M2** (información que el conductor busca antes de decidir), la métrica vanidosa (trayectos publicados) y el criterio de confirma / refuta / no concluyente.
 - Se registra el **MVP construido**: flujo del conductor de punta a punta; la búsqueda del pasajero, el registro con OCR, la reserva con antelación y la carga de vehículo no se implementaron (desvío respecto del TP3, decidido por el equipo para concentrar la prueba en el conductor).
-- [PENDIENTE: estado de cada supuesto afectado por la prueba, en especial el supuesto 7.]
+- Se completan los **resultados de la prueba**, emulada con U1, U2 y U3 en el rol Conductor sobre la versión 1.0.0 del MVP: M1 (2 de 3 aceptan) y M2 (2 de 3 piden un dato antes de decidir) dan un veredicto **no concluyente** contra el criterio de éxito.
+- Se registra **lo aprendido**: foto y nombre completo son lo más pedido, el indicador fijo "3 alumnos validados cerca tuyo" contaminó una de las aceptaciones y cuatro de los seis hallazgos del TP4 aparecieron en la sesión.
+- Se actualiza el **estado de los supuestos** afectados: el 5 se mantiene "Mayormente refutado" con un matiz, y el 7 no pudo evaluarse porque el MVP no construyó el lado pasajero.
+- Se registra la **decisión de perseverar**, con un ciclo de ajuste antes de construir el lado pasajero.
 
 ---
 
@@ -322,8 +325,8 @@ El flujo se centra en el Conductor, usuario primario. Se distingue un **registro
 
 | Métrica | Umbral | Resultado | Observación que lo respalda |
 |---|---|---|---|
-| M1 | 2 de 3 o más aceptan | [PENDIENTE] | [PENDIENTE: usuario, momento] |
-| M2 | 2 o más piden el mismo dato | [PENDIENTE] | [PENDIENTE: usuario, momento] |
+| M1 | 2 de 3 o más aceptan | 2 de 3 aceptan (U1 y U2); U3 rechaza. | U1, T2 (0:12 en la solicitud): acepta citando el sello y el indicador fijo del inicio. U2, T2 (0:48): acepta tras pedir foto y apellido. U3, T2 (1:40): rechaza. |
+| M2 | 2 o más piden el mismo dato | 2 de 3 piden un dato que la app no muestra (U2 y U3); la foto la piden los dos. | U2, T2 (0:20–0:35): foto y apellido. U3, T2 (0:25–1:20): foto, calificaciones y forma de contacto. U1 no pidió nada. |
 
 ### MVP construido
 - Real: publicación de trayectos, confirmación manual, perfil del pasajero en pantalla, detección puntual de llegada (600 m).
@@ -332,13 +335,40 @@ El flujo se centra en el Conductor, usuario primario. Se distingue un **registro
 - No construido (desvío respecto del TP3, justificado en el informe): búsqueda por proximidad, reserva con antelación, registro con OCR, carga de vehículo.
 
 ### Lo aprendido en la prueba
-[PENDIENTE: completar con los resultados de U1, U2 y U3, anclados en observaciones.]
+> **Nota:** las sesiones se realizaron con tres usuarios en el rol Conductor, sobre la versión 1.0.0 del MVP.
+
+- **La foto y el nombre completo son lo más pedido.** U2 (T2, 0:20–0:35) y U3 (T2, 0:25) los buscaron antes de decidir. Es un faltante que el TP4 ya había aceptado (hallazgo #6) y que el MVP todavía no tiene, así que M2 mide un defecto conocido y no una necesidad nueva.
+- **Calificaciones y forma de contacto los pidió una sola persona** (U3, T2, 0:50 y 1:20). Siguen fuera del alcance, según el criterio de la métrica M2.
+- **Una aceptación no se puede atribuir al perfil.** U1 aceptó a los 12 segundos citando "tres validados cerca" (T2, 0:08 y 0:12), un valor fijo del código que el equipo había decidido retirar antes de la primera sesión y que seguía en el MVP probado.
+- **Lo que hicieron no coincide con lo que dijeron.** U2 aceptó a los 0:48, pero en la pregunta final dijo que con una persona real no aceptaría sin foto. En el TP2, U2 había dicho que no viajaría con un desconocido bajo ninguna condición. U3 fue coherente con el TP2: rechazó y pidió saber más de la persona.
+- **Aparecieron cuatro de los seis hallazgos del TP4** (#1, #2, #4 y #6): el mensaje de confirmación que anticipa un resultado (U3, T1), el formulario vacío al volver (U2, T1), la imposibilidad de borrar un trayecto (U2, T1) y el perfil incompleto (U2 y U3, T2).
+- **Aparecieron otros problemas de usabilidad:** dos botones "M" idénticos para martes y miércoles (U2 eligió martes), la hora de salida por defecto igual a la hora de cursada del enunciado (U1 la publicó sin notarlo), "Rechazar" sin ningún aviso (U3) y "Verificar llegada" que fuera del campus no dice qué hacer (los tres terminaron con el botón Demo).
+- **Desvío de la prueba:** la solicitud no llegó sola y los botones Demo estaban a la vista. En las tres sesiones el facilitador indicó el botón antes de T2.
 
 ### Estado de la hipótesis
-[PENDIENTE: confirma / refuta / no concluyente, con el fundamento.]
+**No concluyente.** M1 dio 2 de 3 aceptaciones y M2 dio 2 de 3 conductores que pidieron un dato antes de decidir, que es justamente el caso que el criterio define como no concluyente.
+
+La hipótesis no se refuta, porque dos conductores aceptaron a un desconocido validado y la barrera no es absoluta. Tampoco se confirma: la confianza no se generó solo con el perfil actual. Dos pidieron más datos, una aceptación se apoyó en un indicador ajeno a la solución y la decisión fue sobre una persona ficticia y sin consecuencias.
+
+**La métrica que podría estar mintiendo es M1.** Si se descuenta a U1 y se pesa a U2 por lo que dijo en la pregunta final, la aceptación baja a 1 o 0 de 3, que es el umbral de refutación. Por eso no se declara confirmada.
 
 ### Estado de los supuestos tras el TP5
-[PENDIENTE: estado de cada supuesto afectado por la prueba, en especial el supuesto 7.]
+- **Supuesto 5** (viajar con compañeros desconocidos de la UNLaM): **se mantiene "Mayormente refutado", con un matiz.** 2 de 3 aceptaron una solicitud simulada, pero solo 1 de 3 (U1) dijo que lo haría con una persona real, y pidiendo foto. U2 y U3 dijeron que no.
+- **Supuesto 7** (coincidencia de recorridos y horarios): **no pudo evaluarse.** El MVP no construyó la búsqueda por proximidad ni la reserva, así que no se probó la superposición con pasajeros. Sigue "Parcialmente confirmado, con matices" y sigue siendo el supuesto crítico. Se prueba recién si el segundo ciclo confirma la hipótesis.
+- **Supuesto 6** (la ganancia económica como incentivo): **sin cambios.** Ninguno de los tres mencionó dinero durante las sesiones.
+- **Supuestos 1 y 2:** sin cambios. **Supuestos 3 y 4:** siguen sin evidencia, porque no se relevaron pasajeros.
 
 ### Decisión: pivotar o perseverar
-[PENDIENTE: decisión, tipo de pivote si corresponde y nueva hipótesis o próximo paso a construir.]
+**Perseverar, con un ciclo de ajuste antes de seguir construyendo.**
+
+**Fundamento:** la hipótesis no se refutó (U1 y U2 aceptaron a un desconocido validado en T2), y el dato más pedido es uno que el TP4 ya había aceptado y el MVP todavía no tiene: foto y nombre completo (U2, T2, 0:20–0:35; U3, T2, 0:25). Eso no justifica cambiar de segmento ni de necesidad, pero tampoco permite confirmar.
+
+**Próximo paso a construir:**
+1. Completar el perfil que ve el conductor con foto y nombre completo (hallazgo #6 del TP4).
+2. Retirar el indicador "3 alumnos validados cerca tuyo", ocultar los botones Demo y hacer que la solicitud llegue sola.
+3. Repetir T2 con tres conductores nuevos y los mismos umbrales del criterio de éxito.
+4. Solo si ese segundo ciclo confirma, construir el lado pasajero para probar la coincidencia de recorridos (supuesto 7).
+
+Calificaciones, historial y chat siguen fuera del alcance: solo U3 los pidió.
+
+**Pivote:** no corresponde por ahora. Si el segundo ciclo da 1 de 3 aceptaciones o menos, con el perfil completo y sin los factores de contaminación, correspondería un **pivote de necesidad del consumidor**: la barrera ya no sería la falta de información, y la nueva hipótesis buscaría qué otra condición de confianza falta.
