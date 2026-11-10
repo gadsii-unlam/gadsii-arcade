@@ -1,0 +1,86 @@
+# U2 — Notas de sesión (TP5, UNLaMigo)
+
+> **NOTAS TOMADAS.** Esta sesión fue realizada con un usuario en el rol Conductor, a partir del código del MVP (versión 1.0.0). Derivadas de `transcripcion-sesiones-TP5.md`.
+
+| Dato | Valor |
+|---|---|
+| Usuario | U2 |
+| Rol | Conductor |
+| Fecha | 10/11/2026 |
+| Duración total | 17 min |
+| Versión del MVP | 1.0.0 |
+| Origen cargado en T1 | Haedo |
+| Facilitador y observador | Integrantes del equipo Arcade |
+
+**Marcas de tiempo:** cronómetro por tarea. En T2, "solicitud" cuenta desde que se abre la pantalla de solicitud.
+**Nota de la prueba:** la solicitud no llegó sola; antes de T2 el facilitador indicó el botón Demo del inicio (ver 3.2 del informe).
+
+## Resultado por tarea
+
+| Tarea | Tiempo | Completó | Fricción |
+|---|---|---|---|
+| T1 Publicar | 6:40 | Sí, con trayecto duplicado | Eligió martes por error, no pudo borrar el trayecto, volvió a cargar todo. Pidió ayuda (3:50). |
+| T2 Decidir solicitud | 1:25 (0:48 sobre la solicitud) | Sí, aceptó | Pidió foto y apellido; tocó el avatar. |
+| T3 Hacer el viaje | 2:50 | Sí | "Verificar llegada" dos veces (4.8 km) antes de ver el botón Demo. |
+| T4 Seguimiento | 1:05 | Sí | Dudó entre dos trayectos. |
+
+## Notas con marca de tiempo
+
+**T1**
+- 0:30 Ingresa. 1:05 Escribe "Haedo" en "Salís desde".
+- 1:50 "Si curso a las 19 no puedo salir a las 19": cambia la hora a 18:15.
+- 2:35 Toca "L", la **primera "M"** (martes) y "V". 2:50 Publica.
+- 2:55 Confirmación: "Haedo → UNLaM · 18:15 hs · Lun, Mar, Vie". Dice: "no, puse martes".
+- 3:10 "Volver al inicio": el trayecto equivocado aparece en la lista. 3:20 Lo abre buscando cómo borrarlo; no hay opción.
+- **3:50 Pide ayuda:** "¿cómo borro el otro?". Respuesta: seguí como lo harías solo.
+- 4:10 Toca "Cargar trayecto": el formulario está vacío ("tengo que cargar todo de nuevo").
+- 4:10–6:20 Vuelve a escribir barrio, hora y días ("me confundo con las dos M"). 6:20 Publica.
+- 6:40 Confirmación con "Lun, Mié, Vie". Vuelve al inicio. **Quedaron dos trayectos publicados.**
+
+**T2**
+- 0:10 "¿Tengo que esperar el aviso o lo toco yo?" Se repite que se dispara con el botón Demo.
+- 0:37 Toca "Demo: simular solicitud entrante".
+- Solicitud 0:10 Lee nombre, carrera y "Alumno/a desde 2021".
+- Solicitud 0:20 Toca el avatar con las iniciales; no pasa nada ("¿no se puede ver el perfil?").
+- Solicitud 0:30 "'Alumno validado'… ¿validado por quién?"
+- Solicitud 0:35 "¿Tiene foto? ¿Qué apellido tiene? Solo dice la inicial."
+- Solicitud 0:48 "Es de Sistemas, está hace años en la facu, está bien. Pero con foto estaría más tranquilo." **Acepta.**
+
+**T3**
+- 0:20 Abre el trayecto con "1/3 lugares ocupados" y toca "Iniciar viaje".
+- 0:50 "Verificar llegada": 4.8 km. Lo repite y obtiene lo mismo.
+- 1:45 Ve y toca "Demo: simular llegada" ("ah, acá estaba"). 2:30 "Finalizar viaje". 2:50 Cierre.
+
+**T4**
+- 0:15 Vuelve al inicio y ve dos trayectos: "¿cuál es el bueno? Ah, el que dice 1/3."
+- 1:05 Entra al de "1/3 lugares ocupados" y ve a la solicitante en "Mi viaje".
+
+## Decisión en T2 (M1 y M2)
+
+- **M1:** aceptó, a los 0:48 sobre la solicitud.
+- **Qué miró:** carrera y antigüedad; después buscó el perfil (avatar, T2 0:20).
+- **M2:** pidió **foto y apellido** antes de decidir (T2 0:20–0:35).
+- **Motivo declarado:** "es de Sistemas, está hace años en la facu"; con foto estaría más tranquilo.
+
+## Puntos de fricción
+
+1. Dos botones "M" idénticos; eligió martes y lo vio recién tras publicar (T1, 2:35 y 2:55).
+2. No se puede borrar un trayecto publicado (T1, 3:20–3:50).
+3. Al volver al inicio y reabrir "Cargar trayecto", el formulario queda vacío (T1, 4:10).
+4. El avatar parece tocable y no abre nada (T2, solicitud 0:20).
+5. El perfil muestra solo la inicial del apellido y no tiene foto (T2, solicitud 0:35).
+6. Con dos trayectos en el inicio duda cuál es el vigente (T4, 0:15–1:05).
+7. Fuera del campus, "Verificar llegada" no dice qué hacer (T3, 0:50–1:45).
+
+## Preguntas finales (resumen)
+
+1. **Qué hizo:** cargó un viaje, se equivocó de día, cargó otro, le llegó un pedido, lo aceptó y vio quién venía.
+2. **Qué miró para decidir:** carrera y años. La aceptó, "pero porque era de prueba".
+3. **Algo que quiso saber y no encontró:** la foto y el apellido; también poder borrar el viaje equivocado.
+4. **Dónde dudó:** al darse cuenta de que había puesto martes y no podía arreglarlo.
+5. **Con una persona real:** "No, sin foto no la aceptaría."
+6. **Algo más:** el botón de volver le hizo perder lo que había cargado.
+
+## Lo que hizo vs. lo que dijo
+
+**No coinciden.** Aceptó la solicitud (T2, 0:48), pero dijo que con una persona real no la aceptaría sin foto. Se registran ambas cosas y, por la regla de la sesión, vale lo que hizo. En el TP2 había dicho que no viajaría con un desconocido bajo ninguna condición.
