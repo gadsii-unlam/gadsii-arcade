@@ -1,9 +1,9 @@
 # Brief de Producto — UNLaMigo
 
 **Equipo:** Arcade
-**Versión:** 3
+**Versión:** 4
 **Repositorio:** https://github.com/gadsii-unlam/gadsii-arcade
-**Fecha:** 09/09/2026
+**Fecha:** 10/11/2026
 
 ## Registro de cambios
 
@@ -33,6 +33,12 @@
 - Se agrega el **flujo principal del MVP**, distinguiendo un registro inicial (única vez, incluye validación de alumno regular y carga del vehículo) de un uso recurrente (publicar trayecto → recibir y aceptar/rechazar solicitudes → iniciar viaje → detección de llegada → finalizar viaje), que es donde ocurre el evento que mide la hipótesis.
 - Se agrega la **detección de llegada al destino** (lectura puntual de geolocalización contra las coordenadas de la UNLaM) como condición para habilitar "Finalizar viaje". Se deja explícito que esto es distinto del seguimiento en vivo (que sigue excluido): es un único chequeo al final, no un tracking continuo.
 - Se agregan los **atributos de usabilidad priorizados**: facilidad de aprendizaje, eficiencia y satisfacción, justificados con hallazgos del perfil real de U1/U2/U3 (uso poco frecuente e irregular, ventanas de uso cortas y puntuales, y la barrera emocional de seguridad que exige medir conformidad además de la sola aceptación). Con esto queda completa la Parte 1 del TP3.
+
+### v3 → v4 (10/11/2026 — TP5)
+- Se agrega la sección **Resultados del TP5**, que documenta los resultados de la prueba con U1, U2 y U3, las métricas y el criterio de éxito, el MVP construido, el aprendizaje, el estado de la hipótesis y la decisión de pivotar o perseverar.
+- Se documentan **M1** (aceptación de solicitudes de desconocidos), **M2** (información que el conductor busca antes de decidir), la métrica vanidosa (trayectos publicados) y el criterio de confirma / refuta / no concluyente.
+- Se registra el **MVP construido**: flujo del conductor de punta a punta; la búsqueda del pasajero, el registro con OCR, la reserva con antelación y la carga de vehículo no se implementaron (desvío respecto del TP3, decidido por el equipo para concentrar la prueba en el conductor).
+- [PENDIENTE: estado de cada supuesto afectado por la prueba, en especial el supuesto 7.]
 
 ---
 
@@ -301,3 +307,38 @@ El flujo se centra en el Conductor, usuario primario. Se distingue un **registro
 **2. Eficiencia.** Los tres describen ventanas de uso cortas y puntuales, no momentos dedicados a explorar la app: U1 la usaría el mismo día antes de salir de cursar, y U2 la usaría a la tarde, mientras merienda, antes de salir hacia la facultad. Un flujo con muchos pasos no encaja en esos márgenes de tiempo.
 
 **3. Satisfacción.** Es el atributo que conecta más directo con la hipótesis. No alcanza con que el conductor complete la acción de aceptar a un desconocido: la hipótesis se sostiene si además queda conforme con esa decisión, porque la barrera real es emocional (seguridad), no operativa. Si acepta un pasajero pero la experiencia le genera dudas o incomodidad, el mecanismo de confianza (perfil del pasajero) no cumplió su función aunque el flujo haya funcionado técnicamente. La satisfacción es la métrica cualitativa que completa a la tasa de aceptación (métrica de comportamiento) definida en la hipótesis de valor.
+
+---
+
+## Resultados del TP5 — Construcción, prueba y aprendizaje
+
+### Métricas y criterio de éxito
+- **M1. Aceptación de solicitudes de desconocidos.** 2 de 3 o más aceptan: se construye el lado pasajero. 1 de 3 o menos: se investiga qué condición de confianza falta.
+- **M2. Información buscada antes de decidir.** Si 2 o más piden el mismo dato, entra primero al próximo ciclo.
+- **Métrica vanidosa:** trayectos publicados. No dice si el conductor se anima a subir a un desconocido.
+- **Confirma:** 2 o más de 3 aceptan y como máximo 1 pide información extra. **Refuta:** 1 o menos acepta. **No concluyente:** 2 o más aceptan pero 2 o más piden información adicional.
+
+**Resultados por métrica**
+
+| Métrica | Umbral | Resultado | Observación que lo respalda |
+|---|---|---|---|
+| M1 | 2 de 3 o más aceptan | [PENDIENTE] | [PENDIENTE: usuario, momento] |
+| M2 | 2 o más piden el mismo dato | [PENDIENTE] | [PENDIENTE: usuario, momento] |
+
+### MVP construido
+- Real: publicación de trayectos, confirmación manual, perfil del pasajero en pantalla, detección puntual de llegada (600 m).
+- Simulado: solicitud entrante (4 perfiles ficticios), validación de alumno regular, datos del conductor.
+- Correcciones del TP4 llevadas al MVP: #1, #2, #5 y #6 (solo la #5 completa; #1, #2 y #6 parciales, ver informe 2.4). Fuera del MVP por decisión de alcance: #3 y #4.
+- No construido (desvío respecto del TP3, justificado en el informe): búsqueda por proximidad, reserva con antelación, registro con OCR, carga de vehículo.
+
+### Lo aprendido en la prueba
+[PENDIENTE: completar con los resultados de U1, U2 y U3, anclados en observaciones.]
+
+### Estado de la hipótesis
+[PENDIENTE: confirma / refuta / no concluyente, con el fundamento.]
+
+### Estado de los supuestos tras el TP5
+[PENDIENTE: estado de cada supuesto afectado por la prueba, en especial el supuesto 7.]
+
+### Decisión: pivotar o perseverar
+[PENDIENTE: decisión, tipo de pivote si corresponde y nueva hipótesis o próximo paso a construir.]
