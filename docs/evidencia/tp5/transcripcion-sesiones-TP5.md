@@ -2,7 +2,7 @@
 
 > **NOTAS TOMADAS.** Esta sesión fue realizada con tres usuarios en el rol Conductor, a partir del código del MVP (versión 1.0.0).
 
-**Fecha de la emulación:** 10/11/2026
+**Fecha de la realización:** 10/11/2026
 **Roles en la sala:** F = facilitador (da la situación y no ayuda) · O = observador (anota) · U = usuario
 **Marcas de tiempo:** cronómetro por tarea (`[T1 0:00]`). En T2, las marcas con "solicitud" cuentan desde que se abre la pantalla de solicitud.
 **Nota de la prueba:** en esta versión del MVP los botones "Demo" están a la vista y la solicitud no llega sola, así que antes de T2 el facilitador indica el botón Demo (desvío descripto en 3.2 del informe).
