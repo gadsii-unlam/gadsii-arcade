@@ -21,3 +21,6 @@
 | 10/11/2026 | Claude Sonnet 5.5 (claude.ai) | Generación de la transcripción de las tres sesiones (transcripcion-sesiones-TP5.md) y de las notas docs/evidencia/tp5/U1.md, U2.md y U3.md a partir de ella. | 5
 | 10/11/2026 | Claude Sonnet 5.5 (claude.ai) | Addendum fechado en docs/tp5/criterio-exito.md y subsección 1.5 del informe, sin tocar métricas ni umbrales. | 5
 | 10/11/2026 | Claude Sonnet 5.5 (claude.ai) | Revisión de consistencia entre informe, brief, transcripción y notas U1, U2 y U3. | 5
+| 10/11/2026 | Claude Sonnet 5.5 (claude.ai) | Lectura del código del MVP (UnlamigoMVP.zip) para armar el borrador del diagrama de arquitectura real (imports, store, navegación, persistencia, geolocalización) y producción de los dos diagramas con Graphviz. El equipo revisó y aceptó el diagrama resultante contra el MVP v1.0.0. | 6
+| 10/11/2026 | Claude Sonnet 5.5 (claude.ai) | Exploración de alternativas tecnológicas y sus características (base con soporte geoespacial, notificaciones push, validación de alumno regular sin acceso al padrón). El equipo eligió PostgreSQL con PostGIS en Supabase (ya lo usa), notificaciones push y validación con OCR autoalojado; la IA propuso las alternativas y el equipo las validó. | 6
+| 10/11/2026 | Claude Sonnet 5.5 (claude.ai) | Armado del informe TP6 en Word con la estética del TP1 y del bloque de brief v5. | 6
